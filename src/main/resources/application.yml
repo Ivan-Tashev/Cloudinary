@@ -1,0 +1,41 @@
+# Database setup
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/cloudinary?createDatabaseIfNotExist=true
+    username: root
+    password: "${MYSQL_PASSWORD}" #Envoironment variable
+  # JPA persistence
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  # HTTP verbs: PUT, DELETE... - hidden methods
+  mvc:
+    hiddenmethod:
+      filter:
+        enabled: true
+  #
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 5MB
+      enabled: true
+
+server:
+  port: 8080
+  # Error Handling - messages
+  error:
+    include-exception: true
+    include-message: always
+    include-stacktrace: always
+
+# CLOUDINARY
+cloudinary:
+  cloud-name: ivantashev
+  api-key: 766423891979133
+  api-secret: "${CLOUDINARY_SECRET}"
